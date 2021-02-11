@@ -34,12 +34,13 @@ atom .
 
 In Atom, add the following files from the source from this repository...
 
-- [`app/middleware.js`](app/middleware.js) - Helper functions for your application stack
-- [`app/routes.js`](app/routes.js) - Organize all your routes in a single file
+- [`app`](app) - Directory for all the app files
+	- [`app/middleware.js`](app/middleware.js) - Helper functions for your application stack
+	- [`app/routes.js`](app/routes.js) - Organize all your routes in a single file
 - [`public`](public) - Directory set as public, contains all static sample assets
 - [`views`](views) - Directory with handlebars `.hbs` layout files
-- [`views/layouts/main.hbs`](views/layouts/main.hbs) - Main handlebars layout file
-- [`views/home.hbs`](views/home.hbs) - Home page view that is rendered with handlebars layout file
+	- [`views/layouts/main.hbs`](views/layouts/main.hbs) - Main handlebars layout file
+	- [`views/home.hbs`](views/home.hbs) - Home page view that is rendered with handlebars layout file
 - [`.gitignore`](.jshintrc) - Tell git to ignore files
 - [`.jshintrc`](.jshintrc) - Configuration file for [JSHint](https://atom.io/packages/atom-jshint)
 - [`app.js`](app.js) - Main app file, ties together all the middleware and modules
@@ -114,7 +115,7 @@ git remote -v
 
 ### Publish Your Project
 
-4. You'll perform these steps [each time you want to push and update Heroku](https://devcenter.heroku.com/articles/git). This will reinstall your dependencies and restart your app on the server. Note: You can continue testing locally but when you want to test on your server you have to commit and push again.
+4. Perform these steps [to update Heroku](https://devcenter.heroku.com/articles/git). This reinstalls dependencies and restarts your app on Heroku.
 
 ```bash
 # commit your code and push it to Heroku
@@ -128,15 +129,10 @@ git push heroku main
 heroku ps:scale web=1
 ```
 
-6. Open your site at https://name-of-your-app.herokuapp.com/
-```bash
-heroku open
-```
+6. Open your site using `heroku open` or go to https://name-of-your-app.herokuapp.com/
+7. If something isn't working correctly you can [view the server logs with](https://devcenter.heroku.com/articles/heroku-cli-commands): `heroku logs --tail`
 
-7. If something isn't working correctly you can view the server logs (also see [heroku cli commands](https://devcenter.heroku.com/articles/heroku-cli-commands))
-```bash
-heroku logs --tail
-```
+
 
 
 
