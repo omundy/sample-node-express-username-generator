@@ -7,6 +7,15 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
+// parse incoming request bodies, populate req.body
+var bodyParser = require('body-parser');
+// extract JSON body of the incoming request
+app.use(bodyParser.json());
+// extract URL-encoded body of the incoming request
+app.use(bodyParser.urlencoded({
+	extended: true // support hierarchical data
+}));
+
 // load middleware to display requests
 const Middleware = require("./app/middleware.js");
 app.use(Middleware.showRequests);

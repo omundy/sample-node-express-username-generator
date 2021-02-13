@@ -2,13 +2,40 @@
 	<div class="row">
 		<div class="col-6 offset-3 text-center my-5">
 
-			<h1>Hello world!</h1>
+			<h2>Random Username Generator</h2>
 
-			<p>This is the {{title}}</p>
+			<form id="generateUsername">
+				<div class="mb-3">
+					<label for="username" class="form-label"></label>
+					<input type="text" class="form-control form-control-lg text-center" id="username" aria-describedby="usernameHelp">
+					<div id="usernameHelp" class="form-text">Click generate to get a new username</div>
+				</div>
 
-			<p><img src="/assets/img/{{img}}" alt="random cat" class="img-fluid w-100"></p>
 
-			<p><a href="https://github.com/omundy/sample-node-express-template" target="_blank">README</a></p>
+				<select id="cityIndex" class="form-select" aria-label="Use my weather?">
+					<option selected>Use my weather?</option>
+
+					<!-- use the same data file we use on the backend for options -->
+					{{#each cities}}
+						<option value="{{@index}}">{{this.city}}</option>
+					{{/each}}
+
+					<!--
+					<option value="1">Davidson, NC</option>
+					<option value="2">New York, NY</option>
+					<option value="3">Los Angeles, CA</option>
+					<option value="4">Honolulu, HI</option>
+					<option value="5">Anchorage, AK</option>
+					-->
+				</select>
+
+
+				<button type="submit" class="btn btn-primary mt-3">Generate</button>
+
+			</form>
+
+			<div class="my-3" id="weatherIcon" style="font-size: 5em"></div>
+
 
 		</div>
 	</div>
