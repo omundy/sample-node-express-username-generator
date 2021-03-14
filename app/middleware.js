@@ -2,18 +2,26 @@
  *	Middleware module - helper functions for your application
  */
 
-
 var exports = module.exports = {};
 
-
+const ignorePatterns = [
+	"/assets/",
+	"/favicon",
+	".svg",
+];
 
 // function to show all requests
 exports.showRequests = (req, res, next) => {
-	// ignore static files
-	if (!req.originalUrl.includes("/assets/") && !req.originalUrl.includes("/favicon")) {
-		// log the path
+	let log = true;
+	console.log(req.originalUrl);
+	// ignore
+	for (let i = 0; i < ignorePatterns.length; i++) {
+		if (req.originalUrl.includes(ignorePatterns[i])) log = false;
+	}
+	if (log) {
+		// start
 		console.log(`\nRequest ${req.method} ${req.originalUrl} [STARTED] from ${req.ip}`, new Date().toLocaleString());
-
+		// close
 		res.on('close', () => {
 			console.log(`Request ${req.method} ${req.originalUrl} [CLOSED] from ${req.ip}`, new Date().toLocaleString());
 		});
