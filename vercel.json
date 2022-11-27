@@ -1,6 +1,6 @@
 {
 	"version": 2,
-	"name": "username-generator",
+	"name": "sample-node-express-username-generator",
 	"builds": [{
 		"src": "./server.js",
 		"use": "@vercel/node"
