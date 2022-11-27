@@ -2,11 +2,11 @@
 	"version": 2,
 	"name": "username-generator",
 	"builds": [{
-		"src": "server.js",
+		"src": "./server.js",
 		"use": "@vercel/node"
 	}],
 	"routes": [{
 		"src": "/(.*)",
-		"dest": "/app.js"
+		"dest": "/server.js"
 	}]
 }
