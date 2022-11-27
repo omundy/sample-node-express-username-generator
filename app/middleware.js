@@ -2,30 +2,43 @@
  *	Middleware module - helper functions for your application
  */
 
+var strftime = require('strftime');
 var exports = module.exports = {};
 
 const ignorePatterns = [
 	"/assets/",
 	"/favicon",
 	".svg",
+	"/site.webmanifest",
 ];
 
-// function to show all requests
+/**
+ *	Middleware function to show all requests
+ *	See https://en.wikipedia.org/wiki/Common_Log_Format
+ */
 exports.showRequests = (req, res, next) => {
+
+	// request patterns to ignore (do not log)
 	let log = true;
-	console.log(req.originalUrl);
-	// ignore
 	for (let i = 0; i < ignorePatterns.length; i++) {
 		if (req.originalUrl.includes(ignorePatterns[i])) log = false;
 	}
+
 	if (log) {
+		const now = strftime('%d/%b/%Y:%H:%M:%S %z');
+
 		// start
-		console.log(`\nRequest ${req.method} ${req.originalUrl} [STARTED] from ${req.ip}`, new Date().toLocaleString());
-		// close
+		console.log(`✅ "${req.method} ${req.url} ${req.protocol}" [start] ${req.ip} - - ${now}`);
+
+		// res.on('finish', () => {
+		// 	console.log(`❌ "${req.method} ${req.url} ${req.protocol}" [finish] ${req.ip} - - ${now} `);
+		// });
+
 		res.on('close', () => {
-			console.log(`Request ${req.method} ${req.originalUrl} [CLOSED] from ${req.ip}`, new Date().toLocaleString());
+			console.log(`❌ "${req.method} ${req.url} ${req.protocol}" [close] ${req.ip} - - ${now} \n`);
 		});
 	}
+
 	// invoke next middleware function
 	next();
 };

@@ -5,12 +5,12 @@
 // require main app
 const app = require('./app');
 
-// set port (required for heroku, which sets own port)
+// set port
 const port = process.env.PORT || 3000;
 
 // start listening for requests
 app.listen(port, () => {
-	console.log(`Example app listening at http://localhost:${port}`);
+	console.log(`App listening at http://localhost:${port}`);
 });
 
 // export app

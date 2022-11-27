@@ -16,9 +16,14 @@ app.use(bodyParser.urlencoded({
 	extended: true // support hierarchical data
 }));
 
-// load middleware to display requests
+// load middleware to log requests
 const Middleware = require("./app/middleware.js");
 app.use(Middleware.showRequests);
+
+// or use the morgan middleware to log requests
+// https://expressjs.com/en/resources/middleware/morgan.html
+// var morgan = require('morgan');
+// app.use(morgan(':method :url :status :response-time ms - :res[content-length]'));
 
 // public directory
 app.use(express.static(__dirname + '/public'));
@@ -37,5 +42,5 @@ app.set('view engine', '.hbs');
 // require routes file and pass context
 require('./app/routes')(app);
 
-// export app for server, server-http, heroku, etc.
+// export app for server
 module.exports = app;

@@ -50,6 +50,8 @@ $("#generateUsername").submit(async (e) => {
 				} else if (json.weather.includes("rain")) {
 					weatherIcon = "🌧";
 				}
+			} else {
+				weatherIcon = "";
 			}
 
 			// update weatherIcon
